@@ -19,4 +19,4 @@ dev-dependencies = []
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/rai-trace"]
+packages = ["src/rai_trace"]

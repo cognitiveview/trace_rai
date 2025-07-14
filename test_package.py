@@ -20,6 +20,30 @@ def test_imports():
         
         result = add_numbers(10, 5)
         print(f"✅ add_numbers(10, 5): {result}")
+
+        # Test deepeval import
+        from rai_trace.providers.deepeval import submit
+        print("✅ deepeval submodule imports work")
+
+        # Mock the API call for testing
+        try:
+            import unittest.mock as mock
+            with mock.patch('requests.post') as mock_post:
+                mock_response = mock.Mock()
+                mock_response.status_code = 200
+                mock_response.json.return_value = {"status": "success"}
+                mock_post.return_value = mock_response
+
+                metrics = {
+                    "dataset_drift": 0.1,
+                    "data_quality": {
+                        "feature1": "ok"
+                    }
+                }
+                response = submit(metrics, api_key="dummy_key")
+                print(f"✅ deepeval.submit(): {response}")
+        except ImportError:
+            print("Could not import mock, skipping deepeval test")
         
         print("\n🎉 All tests passed!")
         
