@@ -10,3 +10,13 @@
 #   universal: false
 
 -e file:.
+certifi==2025.7.14
+    # via requests
+charset-normalizer==3.4.2
+    # via requests
+idna==3.10
+    # via requests
+requests==2.32.4
+    # via rai-trace
+urllib3==2.5.0
+    # via requests

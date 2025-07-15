@@ -6,13 +6,12 @@ class RaiTraceClient:
     """
     The main client for interacting with the TRACE API.
     """
-    def __init__(self, auth_token: str, base_url: str = "https://api.cognitiveview.com"):
+    def __init__(self, auth_token: str, base_url: str = "https://qa-api-manager.azure-api.net/trace/metrics"):
         """
         Initializes the client with authentication credentials.
 
         Args:
             auth_token (str): Your authorization token.
-            user_id (str): Your user ID.
             base_url (str, optional): The base URL of the API. Defaults to "https://api.cognitiveview.com".
         """
         self.auth_token = auth_token

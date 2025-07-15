@@ -2,6 +2,39 @@
 Quick test script for rai-trace package
 """
 
+
+def test_send_metrics():
+    from rai_trace.client import RaiTraceClient
+    """
+    Example test to send metrics using the RaiTraceClient.
+    """
+    
+    # This client will hold your authentication token and manage providers.
+    client = RaiTraceClient(auth_token = 'f895bd4974e248998099c10bb5bec046')
+
+    # 2. Prepare your metric data for each provider
+    deepeval_metrics = {
+        'AnswerRelevancyMetric': 20,
+        'FaithfulnessMetric': 1.0,
+        'HallucinationMetric': 0.0
+    }
+
+    # 3. Use the provider-specific methods from the client instance
+    # The client handles passing the auth token and base URL to the provider.
+    print("Sending DeepEval metrics...")
+    try:
+        response = client.deepeval.submit(
+            eval_metrics = deepeval_metrics,
+            application_name = "trace_sdk",
+            version = "1.0.0",
+            use_case = "transportation"
+        )
+        print("Response from DeepEval submission:", response)
+        assert response is not None # Add a basic assertion
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 def test_imports():
     """Test that imports work correctly"""
     try:
@@ -21,30 +54,7 @@ def test_imports():
         result = add_numbers(10, 5)
         print(f"✅ add_numbers(10, 5): {result}")
 
-        # Test deepeval import
-        from rai_trace.providers.deepeval import submit
-        print("✅ deepeval submodule imports work")
 
-        # Mock the API call for testing
-        try:
-            import unittest.mock as mock
-            with mock.patch('requests.post') as mock_post:
-                mock_response = mock.Mock()
-                mock_response.status_code = 200
-                mock_response.json.return_value = {"status": "success"}
-                mock_post.return_value = mock_response
-
-                metrics = {
-                    "dataset_drift": 0.1,
-                    "data_quality": {
-                        "feature1": "ok"
-                    }
-                }
-                response = submit(metrics, api_key="dummy_key")
-                print(f"✅ deepeval.submit(): {response}")
-        except ImportError:
-            print("Could not import mock, skipping deepeval test")
-        
         print("\n🎉 All tests passed!")
         
     except Exception as e:
@@ -53,4 +63,4 @@ def test_imports():
         traceback.print_exc()
 
 if __name__ == "__main__":
-    test_imports()
+    test_send_metrics()

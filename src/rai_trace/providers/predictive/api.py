@@ -1,5 +1,8 @@
 import requests
-from typing import Dict, Any
+from typing import Dict, Any, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ...client import RaiTraceClient
 
 class CommonPredictiveProvider:
     """
