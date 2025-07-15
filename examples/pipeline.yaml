@@ -1,0 +1,28 @@
+name: AI Governance Metrics Submission
+
+on:
+  pull_request:
+    branches: [main, release/**]
+  workflow_dispatch:
+
+jobs:
+  submit-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install RAI TRACE client
+        run: pip install rai-trace
+
+      - name: Submit metrics to TRACE
+        env:
+          TRACE_TOKEN: ${{ secrets.TRACE_TOKEN }}
+          TRACE_METRICS_FILE: trace_inputs/metrics.json
+        
+        run: python submit_trace_metrics.py
+
