@@ -5,6 +5,7 @@ description = "A comprehensive tracing and monitoring library for ML/AI applicat
 authors = []
 dependencies = [
     "requests>=2.32.4",
+    "pydantic>=2.11.7",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

@@ -1,5 +1,6 @@
 import requests
 from typing import Dict, Any, TYPE_CHECKING
+from .keys import DeepEvalGenerativeMetrics
 
 if TYPE_CHECKING:
     from ...client import RaiTraceClient
@@ -18,10 +19,16 @@ class DeepevalProvider:
         Args:
             metric_results (Dict[str, Any]): A dictionary of metric scores.
             application_name (str): The name of your application.
-            version (str, optional): The application version. Defaults to "1.0.0".
-            use_case (str, optional): The use case for the evaluation. Defaults to "default".
+            version (str): The application version
+            use_case (str): The use case of the application.
         """
-
+        try:
+            eval_metrics = DeepEvalGenerativeMetrics(**eval_metrics).model_dump()
+        
+        except Exception as e:
+            print(f"Metric validation failed: {e}")
+            raise
+        
         # url = f"{self._client.base_url}/cv/v1/metrics"
         url = self._client.base_url
 
@@ -49,6 +56,5 @@ class DeepevalProvider:
             return response.json()
         except requests.exceptions.HTTPError as http_err:
             print(f"HTTP error occurred: {http_err}")
-            # Print the detailed error response from the server
             print(f"Response body: {response.text}")
             raise

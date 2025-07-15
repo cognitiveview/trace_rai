@@ -10,13 +10,25 @@
 #   universal: false
 
 -e file:.
+annotated-types==0.7.0
+    # via pydantic
 certifi==2025.7.14
     # via requests
 charset-normalizer==3.4.2
     # via requests
 idna==3.10
     # via requests
+pydantic==2.11.7
+    # via rai-trace
+pydantic-core==2.33.2
+    # via pydantic
 requests==2.32.4
     # via rai-trace
+typing-extensions==4.14.1
+    # via pydantic
+    # via pydantic-core
+    # via typing-inspection
+typing-inspection==0.4.1
+    # via pydantic
 urllib3==2.5.0
     # via requests
