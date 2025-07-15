@@ -1,10 +1,7 @@
 import requests
-from typing import Dict, Any, TYPE_CHECKING
+from typing import Dict, Any
 
-if TYPE_CHECKING:
-    from ...client import RaiTraceClient
-
-class DeepevalProvider:
+class OpikProvider:
     """
     A client for submitting DeepEval metrics.
     """
@@ -25,6 +22,7 @@ class DeepevalProvider:
         headers = {
             "Authorization": self._client.auth_token,
             "Content-Type": "application/json",
+            "X-User-Id": self._client.user_id,
         }
         payload = {
             "metric_metadata": {
