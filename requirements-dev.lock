@@ -19,11 +19,11 @@ charset-normalizer==3.4.2
 idna==3.10
     # via requests
 pydantic==2.11.7
-    # via rai-trace
+    # via trace-rai
 pydantic-core==2.33.2
     # via pydantic
 requests==2.32.4
-    # via rai-trace
+    # via trace-rai
 typing-extensions==4.14.1
     # via pydantic
     # via pydantic-core
