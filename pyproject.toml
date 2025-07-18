@@ -1,5 +1,5 @@
 [project]
-name = "rai_trace"
+name = "trace_rai"
 version = "0.1.0"
 description = "A comprehensive tracing and monitoring library for ML/AI applications"
 authors = []
@@ -22,4 +22,4 @@ dev-dependencies = []
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/rai_trace"]
+packages = ["src/trace_rai"]
